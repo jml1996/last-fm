@@ -2,20 +2,14 @@ import React, { useState, useEffect } from "react";
 import Artist from "./Artist";
 import lastFmApiKey from "../keys";
 import axios from 'axios';
-import { TextField } from "@material-ui/core";
+import lastFmBase from "../links";
 
-const lastFmBase = "http://ws.audioscrobbler.com/2.0/";
-
-const initialFormValues = {
-    searchVal: ""
-}
 const initialTags = []
 
 function Artists() {
     const [artists, setArtists] = useState([]);
     const [artistsTracksListeners, setArtistsTracksListeners] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [formValues, setFormValues] = useState(initialFormValues);
     const [allTags, setAllTags] = useState(initialTags);
     const [searchTag, setSearchTag] = useState("");
 
@@ -75,53 +69,6 @@ function Artists() {
                 console.log(e)
             })
     }, [artists])
-
-    const search = evt => {
-        // evt.preventDefault()
-        // setArtists([]);
-        // setLoading(true)
-        // const yelpApi = `https://api.yelp.com/v3/businesses/search?term=${"parking lot"}&location=${formValues.searchVal}`
-        // const proxyUrl = "https://cors-anywhere.herokuapp.com/"
-
-        // const options = {
-        //     method: 'GET',
-        //     headers: {
-        //         "Authorization": `Bearer ${yelpApiKey}`,
-        //         "Cookie": "__cfduid=db290300ecfe95ec1fe3bc92c388c3c991586618117",
-        //         "Access-Control-Allow-Origin": "*"
-        //     },
-        //     redirect: 'follow'
-        // };
-        // fetch(proxyUrl + yelpApi, options)
-        // .then(response => {
-        //     return response.text()
-        // })
-        // .then(result => {
-        //     setLoading(false)
-        //     const res = JSON.parse(result)
-        //     setArtists(res.businesses);
-        // })
-        // .catch(err => {
-        //     setLoading(false)
-        //     console.log(err)
-        // });
-    }
-
-    const submit = () => {
-        setLoading(true);
-        const getTopTags = `http://ws.audioscrobbler.com/2.0/?method=tag.getTopTags&api_key=${lastFmApiKey}&format=json`
-        axios
-            .get(getTopTags)
-            .then(res => {
-                setLoading(false)
-                const topTagsArray = res.data.toptags.tag
-                setAllTags(topTagsArray)
-            })
-            .catch(err => {
-                setLoading(false)
-                console.log(err)
-            })
-    }
   
     const handleChange = (event) => {
         setSearchTag(event.target.value);

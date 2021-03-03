@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -8,22 +7,14 @@ import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
 import history from "../history";
 
-// name
-// rank
-// image.small/medium/large/extralarge/mega.#text/size
-// mbid
-// streamable
-// url
-
 
 function Artist(props){
     const [toggle, setToggle] = useState(false);
-    const { artistData, artistTracksListeners } = props;
-    // console.log(artistData)
-// onClick={() => props.history.push(`/artist/${artistData.mbid}`)}
+    const { artistData, artistTracksListeners  } = props;
+
     return(
         <StyledCardContainer>
-            <Card onClick={() => history.push(`artist/${artistData.name}`)}>
+            <Card>
                 <CardActionArea>
                     {
                         artistData.image.large ?
@@ -37,7 +28,9 @@ function Artist(props){
                     }
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            { artistData.name }
+                            <span onClick={() => history.push(`artistdetails/${artistData.name}`)}>
+                                { artistData.name }
+                            </span>
                             <span onClick={() => setToggle(!toggle)} style={{float: "right"}}>{!toggle ? String.fromCharCode(8964) : String.fromCharCode(8963)}</span> 
                         </Typography>
                         <Typography variant="body">Listeners: {artistTracksListeners.listeners}</Typography>
@@ -47,7 +40,6 @@ function Artist(props){
                                 <h3>Top Songs</h3>
                                 {
                                     artistTracksListeners.toptracks.map((v, i) => {
-                                        // console.log(v)
                                     return <p key={i}><b>{i+1}.</b>"{v}"</p>
                                     })
                                 }

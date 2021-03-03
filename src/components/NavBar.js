@@ -4,15 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
 
-// import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
 const NavBar = (props) => {
-    // const classes = useStyles();
 
     return(
         <AppBar className="nav-bar" display="flex" position="static">
@@ -20,13 +12,18 @@ const NavBar = (props) => {
                 <Grid justify="space-around" container spacing={24}>
                     <Grid item style={{width: "12%"}}>
                         <Link style={{color: "white", textDecoration: "None"}} to="/artists" color="inherit">
-                            Artists
+                            Home
                         </Link>
                     </Grid>
                     <Grid item style={{width: "12%"}}>
-                        <Link style={{color: "white", textDecoration: "None"}} to="/artists" color="inherit">
-                            Artists
-                        </Link>
+                        <a 
+                            href="https://www.last.fm/api#getting-started" 
+                            target="_blank"
+                            rel="noreferrer" 
+                            style={{color: "white", textDecoration: "None"}}
+                        >
+                            About
+                        </a>
                     </Grid>
                 </Grid>
             </Toolbar>
