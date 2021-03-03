@@ -19,7 +19,6 @@ function TopAlbums(props){
         axios
             .get(albumInfoUrl)
             .then(res => {
-                console.log(res)
                 const albumMoreDetails = res.data.album
                 setAlbumInfo(albumMoreDetails);
             })
